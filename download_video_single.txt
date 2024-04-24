@@ -1,0 +1,14 @@
+import requests
+import os
+
+def download_video(video_name, video_url):
+    video_res = requests.get(video_url, headers=ajax_header)
+    video_path = os.path.join(os.getcwd(), "单线程视频下载")
+    if not os.path.exists(video_path):
+        os.mkdir(video_path)
+    with open(f"{video_path}/{video_name}.mp4", "wb") as video_file:
+        video_file.write(video_res.content)
+    print(f"{video_name} 下载完毕")
+
+# 使用示例
+download_video("example_video", "http://example.com/video.mp4")
